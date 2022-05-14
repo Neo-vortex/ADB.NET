@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADB.NET", "ADB.NET\ADB.NET.csproj", "{722051E1-E88C-451D-98A2-C3B57E4B3583}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{13874D1D-2C7E-4584-925C-654D1A4146F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{722051E1-E88C-451D-98A2-C3B57E4B3583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722051E1-E88C-451D-98A2-C3B57E4B3583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722051E1-E88C-451D-98A2-C3B57E4B3583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722051E1-E88C-451D-98A2-C3B57E4B3583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13874D1D-2C7E-4584-925C-654D1A4146F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13874D1D-2C7E-4584-925C-654D1A4146F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13874D1D-2C7E-4584-925C-654D1A4146F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13874D1D-2C7E-4584-925C-654D1A4146F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
