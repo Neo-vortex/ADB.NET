@@ -13,7 +13,7 @@ namespace  main
     {
         public  static  void Main()
         {
-            var _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            /*var _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _socket.Connect(new IPEndPoint(IPAddress.Parse("192.168.2.176") , 5555));
             var _CONNECT = new ADBpacket(ADBcommandType.CNXN, 0x01000000, 256*1024, "host::C#_ADB");
             _socket.Send(_CONNECT.ToByteArray());
@@ -23,7 +23,7 @@ namespace  main
             var rr = _result.GetHumanReadableCommandType();
 
 
-            /*var _ath_moc = new ADBpacket(ADBcommandType.AUTH, 3, 0, "4564698547");*/
+            /*var _ath_moc = new ADBpacket(ADBcommandType.AUTH, 3, 0, "4564698547");#1#
             var _ath_moc = new ADBpacket(ADBcommandType.AUTH, 3, 0, "4564698547");
             _socket.Send(_ath_moc.ToByteArray());
             data = new byte[256*1024];
@@ -43,7 +43,7 @@ namespace  main
              
              Console.WriteLine(System.Text.Encoding.UTF8.GetString(_result.data));
              
-                Console.WriteLine(_result.GetHumanReadableCommandType());
+                Console.WriteLine(_result.GetHumanReadableCommandType());*/
         }
 
     }

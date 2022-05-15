@@ -10,7 +10,7 @@ public class ADBheader
         this.command = BitConverter.ToUInt32(Encoding.ASCII.GetBytes(command.GetCommand()));
         this.arg0 = arg0;
         this.arg1 = arg1;
-        magic = 0XFFFFFFFF - this.command;
+        magic = Utilities.Consts._MAGIC_CONST - this.command;
     }
 
     public ADBheader()

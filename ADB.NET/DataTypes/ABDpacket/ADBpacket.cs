@@ -21,7 +21,7 @@ public class ADBpacket
 
     private uint CalculateCrc32()
     {
-        return Data?.data?.Aggregate<byte, uint>(0, (current, t) => (current + t) & 0xFFFFFFFF) ??
+        return Data?.data?.Aggregate<byte, uint>(0, (current, t) => (current + t) & Utilities.Consts._MAGIC_CONST) ??
                throw new ArgumentNullException("Data is null");
     }
 
