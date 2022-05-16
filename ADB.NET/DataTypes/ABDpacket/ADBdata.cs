@@ -2,9 +2,21 @@ using System.Text;
 
 namespace ADB.NET.DataTypes.ABDpacket;
 
-public record ADBdata(byte[] data)
+public class ADBdata 
 {
-    public ADBdata(string data) : this(Encoding.UTF8.GetBytes(data)){}
+    public byte[] data { get; }
 
-    public byte[] data { get; } = data;
+    public ADBdata(byte[] data)
+    {
+        this.data = data;
+    }
+    public ADBdata(string data)
+    {
+        this.data = System.Text.Encoding.UTF8.GetBytes(data);
+    }
+
+    public ADBdata(Span<byte> slice)
+    {
+        this.data = slice.ToArray();
+    }
 }

@@ -1,3 +1,4 @@
+using System.Buffers.Binary;
 using System.Text;
 using ADB.NET.Interfaces;
 
@@ -12,7 +13,43 @@ public class ADBheader
         this.arg1 = arg1;
         magic = Utilities.Consts._MAGIC_CONST - this.command;
     }
+    public ADBheader(string command, uint arg0, uint arg1)
+    {
+        this.command = BitConverter.ToUInt32(Encoding.ASCII.GetBytes(command));
+        this.arg0 = arg0;
+        this.arg1 = arg1;
+        magic = Utilities.Consts._MAGIC_CONST - this.command;
+    }
+    
+    public  byte[] ToByteArray()
+    {
+        Span<byte> buffer = stackalloc byte[24 + (int)this.data_length];
 
+        BinaryPrimitives.WriteUInt32LittleEndian(buffer, this.command);
+        BinaryPrimitives.WriteUInt32LittleEndian(buffer[4..],
+            this.arg0);
+        BinaryPrimitives.WriteUInt32LittleEndian(buffer[8..],
+            this.arg1);
+        BinaryPrimitives.WriteUInt32LittleEndian(buffer[12..],
+            this.data_length);
+        BinaryPrimitives.WriteUInt32LittleEndian(buffer[16..],
+            this.data_crc32);
+        BinaryPrimitives.WriteUInt32LittleEndian(buffer[20..],
+            this.magic);
+        return buffer.ToArray();
+    }
+    
+    public static ADBheader FromByteArray(byte[] buffer )
+    {
+        var header =  new ADBheader();
+        header.command = BinaryPrimitives.ReadUInt32LittleEndian(buffer);
+        header.arg0 = BinaryPrimitives.ReadUInt32LittleEndian(buffer[4..]);
+        header.arg1 = BinaryPrimitives.ReadUInt32LittleEndian(buffer[8..]);
+        header.data_length = BinaryPrimitives.ReadUInt32LittleEndian(buffer[12..]);
+        header.data_crc32 = BinaryPrimitives.ReadUInt32LittleEndian(buffer[16..]);
+        header.magic = BinaryPrimitives.ReadUInt32LittleEndian(buffer[20..]);
+        return header;
+    }
     public ADBheader()
     {
     }

@@ -4,7 +4,7 @@ namespace ADB.NET.DataTypes;
 
 public class ManagedAndroidDebuggingBridge
 {
-    public List<IADBdevice> Devices { get; private set; } = new ();
+    public List<IADBdevice> Devices { get; } = new ();
     public  void  ManuallyAddDevice(IADBdevice device)
     {
         if  (device == null)

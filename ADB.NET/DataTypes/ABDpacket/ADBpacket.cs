@@ -1,4 +1,12 @@
+
+#define  CHECK_CRC2
+
 using System.Buffers.Binary;
+#if CHECK_CRC2
+using System.Security;
+#endif
+
+
 
 namespace ADB.NET.DataTypes.ABDpacket;
 
@@ -16,13 +24,17 @@ public class ADBpacket
     {
     }
 
-    public ADBheader Header { get; set; }
+    public ADBpacket(ADBheader header)
+    {
+        Header = header ?? throw new ArgumentNullException(nameof(header));
+    }
+
+    public ADBheader Header { get; set; } = new();
     public ADBdata Data { get; set; }
 
     private uint CalculateCrc32()
     {
-        return Data?.data?.Aggregate<byte, uint>(0, (current, t) => (current + t) & Utilities.Consts._MAGIC_CONST) ??
-               throw new ArgumentNullException("Data is null");
+        return Data.data.Aggregate<byte, uint>(0, (current, t) => (current + t) & 0xFFFFFFFF);
     }
 
     public static ADBpacket FromByteArray(byte[] buffer)
@@ -33,14 +45,21 @@ public class ADBpacket
             Header =
             {
                 command = BinaryPrimitives.ReadUInt32LittleEndian(buffer),
-                arg0 = BinaryPrimitives.ReadUInt32LittleEndian(buffer[4..]),
-                arg1 = BinaryPrimitives.ReadUInt32LittleEndian(buffer[8..]),
-                data_length = BinaryPrimitives.ReadUInt32LittleEndian(buffer[12..]),
-                data_crc32 = BinaryPrimitives.ReadUInt32LittleEndian(buffer[16..]),
-                magic = BinaryPrimitives.ReadUInt32LittleEndian(buffer[20..])
+                arg0 = BinaryPrimitives.ReadUInt32LittleEndian(buffer.AsSpan()[4..]),
+                arg1 = BinaryPrimitives.ReadUInt32LittleEndian(buffer.AsSpan()[8..]),
+                data_length = BinaryPrimitives.ReadUInt32LittleEndian(buffer.AsSpan()[12..]),
+                data_crc32 = BinaryPrimitives.ReadUInt32LittleEndian(buffer.AsSpan()[16..]),
+                magic = BinaryPrimitives.ReadUInt32LittleEndian(buffer.AsSpan()[20..])
             }
         };
-        if (packet.Header.data_length > 0) packet.Data = new ADBdata(buffer[24..].ToArray());
+        if (packet.Header.data_length <= 0 || buffer.Length <= 24) return packet;
+        packet.Data = new ADBdata(buffer.AsSpan()[24..]);
+        #if CHECK_CRC2
+        if (packet.CalculateCrc32() != packet.Header.data_crc32)
+        {
+            throw new SecurityException("CRC32 not matched");
+        }
+        #endif
         return packet;
     }
 

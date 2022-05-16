@@ -5,5 +5,5 @@ public enum ADBConnectionStatus
     CONNECTED,
     DISCONNECTED,
     PENDING,
-    UNAUTHERIZED,
+    UNAUTHERIZED, // todo:not implemented
 }
