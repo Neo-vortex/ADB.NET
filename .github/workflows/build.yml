@@ -1,5 +1,6 @@
- name: Setup .NET Core SDK
-  uses: actions/setup-dotnet@v2.1.0
+steps:
+- uses: actions/checkout@v3
+- uses: actions/setup-dotnet@v2
   with:
-    dotnet-version: '6.0.x' # SDK Version to use; x will use the latest version of the 6.0 channel
- run: dotnet build ADB.NET.sln
+    dotnet-version: '6.0.x' 
+- run: dotnet build ADB.NET.sln
