@@ -1,5 +1,5 @@
 
-/*#define SOCKET_KEEP_ALIVE */
+#define SOCKET_KEEP_ALIVE 
 
 using System.Net;
 using System.Net.Sockets;
@@ -77,6 +77,7 @@ public class WirelessAndroidDebuggingfBridgeDevice : IWirelessAndroidDebuggingBr
         {
             Status = ADBConnectionStatus.PENDING;
             DeviceSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            DeviceSocket.NoDelay = true;
             await DeviceSocket.ConnectAsync(DeviceIPEndPoint);
             #if SOCKET_KEEP_ALIVE
             DeviceSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
