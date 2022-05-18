@@ -1,19 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ADB.NET\ADB.NET.csproj" />
-      <ProjectReference Include="..\WirelessAndroidDebuggingBridge\WirelessAndroidDebuggingBridge.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="BouncyCastle" Version="1.8.9" />
       <PackageReference Include="BouncyCastle.NetCore" Version="1.9.0" />
     </ItemGroup>
 
