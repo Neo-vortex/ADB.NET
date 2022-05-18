@@ -12,20 +12,7 @@ namespace ADBCrypto;
 public class Class1
 {
     private static byte[] convertRsaPublicKeyToAdbFormat(AsymmetricKeyParameter key , int keyLenght) {
-            /*
-             * ADB literally just saves the RSAPublicKey struct to a file.
-             *
-             * typedef struct RSAPublicKey {
-             * int len; // Length of n[] in number of uint32_t
-             * uint32_t n0inv;  // -1 / n[0] mod 2^32
-             * uint32_t n[RSANUMWORDS]; // modulus as little endian array
-             * uint32_t rr[RSANUMWORDS]; // R^2 as little endian array
-             * int exponent; // 3 or 65537
-             * } RSAPublicKey;
-             */
-
-            /* ------ This part is a Java-ified version of RSA_to_RSAPublicKey from adb_host_auth.c ------ */
-            var KEY_LENGTH_WORDS = keyLenght / 4;
+        var KEY_LENGTH_WORDS = keyLenght / 4;
             
             var publicKey = (RsaKeyParameters)key;
 
