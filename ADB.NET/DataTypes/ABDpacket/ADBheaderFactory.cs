@@ -7,7 +7,7 @@ public static class ADBheaderFactory
 {
     public static ADBheader CreateConnectHeader(uint version = 0x01)
     {
-        return new ADBheader(new CNXN(), version, 0x00);
+        return new ADBheader(new CNXN(), version, 256*1024);
     }
 
     public static ADBheader CreateAuthHeader(IAuthenticationMethodParsable method)
