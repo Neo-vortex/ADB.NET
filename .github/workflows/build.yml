@@ -9,5 +9,5 @@ jobs:
      - uses: actions/setup-dotnet@v2
        with:
          dotnet-version: '6.0.x' 
-     - run: dotnet test ADB.NET.sln
-     - run: dotnet build ADB.NET.sln
+     - run: dotnet tool install Cake.Tool --version 2.2.0  
+     - run: dotnet dotnet-cake
