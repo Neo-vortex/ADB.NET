@@ -15,9 +15,6 @@ public static class ADBpacketFactory
  public static ADBpacket CreateAuthBpacket(byte[] authData, IAuthenticationMethodParsable method)
  {
   var header = ADBheaderFactory.CreateAuthHeader(method);
-  Span<byte> payload = new byte[authData.Length + 1] ;
-  authData.CopyTo(payload);
-  payload[^1] = 0;
-  return new ADBpacket(header, new ADBdata(payload.ToArray()) );
+  return new ADBpacket(header, new ADBdata(authData) );
  }
 }

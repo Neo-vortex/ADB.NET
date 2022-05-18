@@ -17,10 +17,7 @@ public class DispatchNotify
         this.CommandType = commandType;
         this.RegisterTime = DateTime.Now;
         this.id = Guid.NewGuid();
-        Oncall = new Task<byte[]>(() =>
-        {
-            return Data;
-        });
+        Oncall = new Task<byte[]>(() => Data);
     }
  
 }
