@@ -1,6 +1,5 @@
 [![default](https://github.com/Neo-vortex/ADB.NET/actions/workflows/build.yml/badge.svg)](https://github.com/Neo-vortex/ADB.NET/actions/workflows/build.yml)
 
-[TOC]
 
 #### About the Project
 
