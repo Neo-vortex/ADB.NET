@@ -1,14 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADB.NET", "ADB.NET\ADB.NET.csproj", "{722051E1-E88C-451D-98A2-C3B57E4B3583}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADB.NET", "src/ADB.NET\ADB.NET.csproj", "{722051E1-E88C-451D-98A2-C3B57E4B3583}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{13874D1D-2C7E-4584-925C-654D1A4146F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "src/Playground\Playground.csproj", "{13874D1D-2C7E-4584-925C-654D1A4146F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WirelessAndroidDebuggingBridge", "WirelessAndroidDebuggingBridge\WirelessAndroidDebuggingBridge.csproj", "{D04D1FE2-89C4-4418-B424-F7E5F067F0AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WirelessAndroidDebuggingBridge", "src/WirelessAndroidDebuggingBridge\WirelessAndroidDebuggingBridge.csproj", "{D04D1FE2-89C4-4418-B424-F7E5F067F0AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USBAndroidDebuggingBridge", "USBAndroidDebuggingBridge\USBAndroidDebuggingBridge.csproj", "{BEFF716F-9AD1-4427-940F-DA7F5B539232}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USBAndroidDebuggingBridge", "src/USBAndroidDebuggingBridge\USBAndroidDebuggingBridge.csproj", "{BEFF716F-9AD1-4427-940F-DA7F5B539232}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{7F6F9266-CD19-49D1-9F3A-7BA73F24352D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "src/UnitTest\UnitTest.csproj", "{7F6F9266-CD19-49D1-9F3A-7BA73F24352D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
