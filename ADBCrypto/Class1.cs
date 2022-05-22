@@ -37,12 +37,7 @@ public class Class1
                 rem = res[1];
                 myN[i] = rem.IntValue;
             }
-
-            /* ------------------------------------------------------------------------------------------- */
-
-            /*ByteBuffer bbuf = ByteBuffer.allocate(524).order(ByteOrder.LITTLE_ENDIAN);*/
             var bbuf = new byte[524];
-
             BinaryPrimitives.WriteInt32LittleEndian( bbuf.AsSpan(0 ..4) , KEY_LENGTH_WORDS);
             BinaryPrimitives.WriteInt32LittleEndian(bbuf.AsSpan(4 .. 8) , n0inv.Negate().IntValue);
             var counter = 0;
@@ -57,7 +52,8 @@ public class Class1
                 BinaryPrimitives.WriteInt32LittleEndian(bbuf.AsSpan(new Range(12 + (4 * KEY_LENGTH_WORDS) + (4 * counter) , 16 + (4 * KEY_LENGTH_WORDS) + (4 * counter))), variable);
                 counter++;
             }
-            BinaryPrimitives.WriteInt32LittleEndian(bbuf.AsSpan(16 + (4 * KEY_LENGTH_WORDS) + (4 * KEY_LENGTH_WORDS) .. 20 + (4 * KEY_LENGTH_WORDS) + (4 * KEY_LENGTH_WORDS)), publicKey.Exponent.IntValue);
+        //todo : write publicKey.Exponent.IntValue
+            /*BinaryPrimitives.WriteInt32LittleEndian(bbuf.AsSpan(16 + (4 * KEY_LENGTH_WORDS) + (4 * KEY_LENGTH_WORDS) .. 20 + (4 * KEY_LENGTH_WORDS) + (4 * KEY_LENGTH_WORDS)), publicKey.Exponent.IntValue);*/
             return bbuf;
         }
   

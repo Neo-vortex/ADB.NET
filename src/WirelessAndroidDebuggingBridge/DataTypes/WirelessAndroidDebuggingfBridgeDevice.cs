@@ -92,6 +92,12 @@ public class WirelessAndroidDebuggingfBridgeDevice : IWirelessAndroidDebuggingBr
             var waitHandler = new DispatchNotify(new AUTH());
             DispatchNotifies.Add(waitHandler);
             SendRawPacket(connectPacket);
+
+
+
+           
+            
+            
             var authChallange = await waitHandler;
             //todo sign auth_challange?
            // var auth_response = ADBpacketFactory.CreateAuthBpacket(System.Text.Encoding.ASCII.GetBytes("4564698547"), new OFFER_PUBLIC_KEY());

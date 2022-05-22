@@ -10,4 +10,8 @@
       <ProjectReference Include="..\ADB.NET\ADB.NET.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="LibUsbDotNet" Version="3.0.97-alpha" />
+    </ItemGroup>
+
 </Project>
