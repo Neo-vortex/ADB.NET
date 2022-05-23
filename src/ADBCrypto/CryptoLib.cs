@@ -109,7 +109,6 @@ public class CryptoLib
             rp.InverseQ = ConvertRsaParametersField(privKey.QInv, rp.Q.Length);
             return rp;
         }
-
         private static byte[] ConvertRsaParametersField(BigInteger n, int size)
         {
             var bs = n.ToByteArrayUnsigned();
