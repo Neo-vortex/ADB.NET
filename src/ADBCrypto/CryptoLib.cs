@@ -12,7 +12,7 @@ namespace ADBCrypto;
 
 public class CryptoLib
 {
-    private static byte[] convertRsaPublicKeyToAdbFormat(AsymmetricKeyParameter key , int keyLenght) {
+    private static byte[] ConvertRsaPublicKeyToAdbFormat(AsymmetricKeyParameter key , int keyLenght) {
         var KEY_LENGTH_WORDS = keyLenght / 4;
             
             var publicKey = (RsaKeyParameters)key;
@@ -84,17 +84,41 @@ public class CryptoLib
         }
         public static byte[] SignDataSHA1(byte[] data, AsymmetricKeyParameter privateKey)
         {
-            
-            RSA rsak = RSA.Create(1024);  
-            RSAParameters rsaKeyInfo = rsak.ExportParameters(true);  
             // Converting bouncy castle key to native csp.
+            RSAParameters rsaParam = ToRsaParameters(privateKey as RsaPrivateCrtKeyParameters);
 
             using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider())
             {
-                rsa.ImportParameters(rsaKeyInfo);
+                rsa.ImportParameters(rsaParam);
 
                 // Signing data.
                 return rsa.SignHash(data, CryptoConfig.MapNameToOID("SHA1"));
             }
+        }
+
+        private static RSAParameters ToRsaParameters(RsaPrivateCrtKeyParameters privKey)
+        {
+            RSAParameters rp = new RSAParameters();
+            rp.Modulus = privKey.Modulus.ToByteArrayUnsigned();
+            rp.Exponent = privKey.PublicExponent.ToByteArrayUnsigned();
+            rp.P = privKey.P.ToByteArrayUnsigned();
+            rp.Q = privKey.Q.ToByteArrayUnsigned();
+            rp.D = ConvertRsaParametersField(privKey.Exponent, rp.Modulus.Length);
+            rp.DP = ConvertRsaParametersField(privKey.DP, rp.P.Length);
+            rp.DQ = ConvertRsaParametersField(privKey.DQ, rp.Q.Length);
+            rp.InverseQ = ConvertRsaParametersField(privKey.QInv, rp.Q.Length);
+            return rp;
+        }
+
+        private static byte[] ConvertRsaParametersField(BigInteger n, int size)
+        {
+            var bs = n.ToByteArrayUnsigned();
+            if (bs.Length == size)
+                return bs;
+            if (bs.Length > size)
+                throw new ArgumentException("Specified size too small", "size");
+            var padded = new byte[size];
+            Array.Copy(bs, 0, padded, size - bs.Length, bs.Length);
+            return padded;
         }
 }
