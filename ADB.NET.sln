@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "src/UnitTest\Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADBCrypto", "ADBCrypto\ADBCrypto.csproj", "{2DD53CF0-B812-4954-8EFA-14F99CA72EDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidDebuggingBridgeKeyring", "AndroidDebuggingBridgeKeyring\AndroidDebuggingBridgeKeyring.csproj", "{5B5B510A-7B6B-45B6-BFE8-809E7BB72EA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{2DD53CF0-B812-4954-8EFA-14F99CA72EDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DD53CF0-B812-4954-8EFA-14F99CA72EDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DD53CF0-B812-4954-8EFA-14F99CA72EDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B5B510A-7B6B-45B6-BFE8-809E7BB72EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B5B510A-7B6B-45B6-BFE8-809E7BB72EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B5B510A-7B6B-45B6-BFE8-809E7BB72EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B5B510A-7B6B-45B6-BFE8-809E7BB72EA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

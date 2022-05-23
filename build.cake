@@ -14,6 +14,9 @@ Task("Clean")
     CleanDirectory($"./src/UnitTest/bin/{configuration}");
     CleanDirectory($"./src/USBAndroidDebuggingBridge/bin/{configuration}");
     CleanDirectory($"./src/WirelessAndroidDebuggingBridge/bin/{configuration}");
+    CleanDirectory($"./src/AndroidDebuggingBridgeKeyrin/bin/{configuration}");
+    
+
 });
 
 Task("Build")

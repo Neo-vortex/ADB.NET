@@ -10,7 +10,7 @@ using Org.BouncyCastle.Security;
 
 namespace ADBCrypto;
 
-public class Class1
+public class CryptoLib
 {
     private static byte[] convertRsaPublicKeyToAdbFormat(AsymmetricKeyParameter key , int keyLenght) {
         var KEY_LENGTH_WORDS = keyLenght / 4;
