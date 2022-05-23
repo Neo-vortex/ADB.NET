@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USBAndroidDebuggingBridge",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "src\UnitTest\UnitTest.csproj", "{7F6F9266-CD19-49D1-9F3A-7BA73F24352D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADBCrypto", "src\ADBCrypto\ADBCrypto.csproj", "{2DD53CF0-B812-4954-8EFA-14F99CA72EDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidDebuggingBridgeCrypto", "src\AndroidDebuggingBridgeCrypto\AndroidDebuggingBridgeCrypto.csproj", "{2DD53CF0-B812-4954-8EFA-14F99CA72EDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidDebuggingBridgeKeyring", "src\AndroidDebuggingBridgeKeyring\AndroidDebuggingBridgeKeyring.csproj", "{5B5B510A-7B6B-45B6-BFE8-809E7BB72EA3}"
 EndProject

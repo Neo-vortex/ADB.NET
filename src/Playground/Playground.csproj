@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ADB.NET\ADB.NET.csproj" />
+      <ProjectReference Include="..\AndroidDebuggingBridgeKeyring\AndroidDebuggingBridgeKeyring.csproj" />
       <ProjectReference Include="..\WirelessAndroidDebuggingBridge\WirelessAndroidDebuggingBridge.csproj" />
     </ItemGroup>
 

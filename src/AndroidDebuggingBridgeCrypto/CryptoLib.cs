@@ -6,11 +6,12 @@ using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Crypto.Prng;
 using Org.BouncyCastle.Math;
+using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Security;
 
 namespace ADBCrypto;
 
-public class CryptoLib
+public static class CryptoLib
 {
     private static byte[] ConvertRsaPublicKeyToAdbFormat(AsymmetricKeyParameter key , int keyLenght) {
         var KEY_LENGTH_WORDS = keyLenght / 4;
@@ -60,23 +61,18 @@ public class CryptoLib
         public static string GetBase64Key(AsymmetricKeyParameter key)
         {
             var publicKey = (RsaKeyParameters)key;
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                byte[] buff = publicKey.Exponent.ToByteArrayUnsigned();
-                ms.Write(buff, 0, buff.Length);
-
-                buff = publicKey.Modulus.ToByteArrayUnsigned();
-                ms.Write(buff, 0, buff.Length);
-
-                ms.Flush();
-                return Convert.ToBase64String(ms.ToArray());
-            }
+            using var ms = new MemoryStream();
+            var buff = publicKey.Exponent.ToByteArrayUnsigned();
+            ms.Write(buff, 0, buff.Length);
+            buff = publicKey.Modulus.ToByteArrayUnsigned();
+            ms.Write(buff, 0, buff.Length);
+            ms.Flush();
+            return Convert.ToBase64String(ms.ToArray());
         }
         public static AsymmetricCipherKeyPair GenerateKeyPair(int keySize)
         {
-            DigestRandomGenerator randomGenerator = new DigestRandomGenerator(new MD5Digest());
-            SecureRandom secureRandom = new SecureRandom(randomGenerator);
+            var randomGenerator = new DigestRandomGenerator(new MD5Digest());
+            var secureRandom = new SecureRandom(randomGenerator);
             var keyGenerationParameters = new KeyGenerationParameters(secureRandom, keySize);
             var keyPairGenerator = new RsaKeyPairGenerator();
             keyPairGenerator.Init(keyGenerationParameters);
@@ -96,7 +92,7 @@ public class CryptoLib
             }
         }
 
-        private static RSAParameters ToRsaParameters(RsaPrivateCrtKeyParameters privKey)
+        public static RSAParameters ToRsaParameters(RsaPrivateCrtKeyParameters privKey)
         {
             RSAParameters rp = new RSAParameters();
             rp.Modulus = privKey.Modulus.ToByteArrayUnsigned();
@@ -109,7 +105,7 @@ public class CryptoLib
             rp.InverseQ = ConvertRsaParametersField(privKey.QInv, rp.Q.Length);
             return rp;
         }
-        private static byte[] ConvertRsaParametersField(BigInteger n, int size)
+        public static byte[] ConvertRsaParametersField(BigInteger n, int size)
         {
             var bs = n.ToByteArrayUnsigned();
             if (bs.Length == size)
@@ -119,5 +115,19 @@ public class CryptoLib
             var padded = new byte[size];
             Array.Copy(bs, 0, padded, size - bs.Length, bs.Length);
             return padded;
+        }
+        public static AsymmetricCipherKeyPair LoadKeyPair(string file)
+        {
+            using var reader = new StreamReader(file);
+            var pem = new PemReader(reader);
+            return pem.ReadObject() as AsymmetricCipherKeyPair ?? throw new InvalidOperationException();
+        }
+
+        public static void SaveKeyPair(AsymmetricCipherKeyPair pair, string file)
+        {
+            using var writer = new StreamWriter(file);
+            var pem = new PemWriter(writer);
+            pem.WriteObject(pair.Private);
+            pem.WriteObject(pair.Public);
         }
 }

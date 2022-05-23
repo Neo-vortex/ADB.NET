@@ -6,4 +6,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\AndroidDebuggingBridgeCrypto\AndroidDebuggingBridgeCrypto.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BouncyCastle.NetCore" Version="1.9.0" />
+    </ItemGroup>
+
 </Project>
